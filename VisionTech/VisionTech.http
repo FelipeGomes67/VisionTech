@@ -1,0 +1,6 @@
+@VisionTech_HostAddress = http://localhost:5125
+
+GET {{VisionTech_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
