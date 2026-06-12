@@ -1,0 +1,105 @@
+.section_cadastro{
+
+    padding: 50px 0;
+
+}
+
+.form_cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_cadastro h1{
+    text-transform: uppercase;
+}
+
+.form_cadastro hr {
+    max-width: 300px;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000000;
+    margin-top: 5px;
+}
+
+.campos_cadastro{
+    display: flex;
+    padding-top: 60px;
+
+    gap: 25px;
+
+    align-items: flex-end;
+}
+
+
+.campo_cad_nome input,
+.campo_cad_categoria select {
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    padding: 0 10px; 
+    width: 300px;
+    height: 35px;   
+    background-color: #ffffff;
+
+    box-shadow: 1px 4px 4px 0px #00000045;
+    margin-top: 7px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.campo_cad_nome,
+.campo_cad_categoria,
+.campo_cad_imagem {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Customização do input de imagem */
+.campo_cad_imagem input[type="file"] {
+    width: 300px;
+    height: 35px;
+    margin-top: 7px;
+    background-color: #ffffff;
+    border-radius: 6px;
+    box-shadow: 1px 4px 4px 0px #00000045;
+    font-size: 14px;
+    
+    /* Alinha o texto interno verticalmente */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.campo_cad_imagem input[type="file"]::file-selector-button {
+    border: none;
+    background-color: #112b82; 
+    color: #ffffff;
+    padding: 0 15px;
+    height: 100%;
+    margin-right: 10px;
+    border-radius: 6px 0 0 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.campo_cad_imagem input[type="file"]::file-selector-button:hover {
+    background-color: #1d3ca3;
+}
+
+@media screen and (max-width: 880px) {
+    .campos_cadastro{
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 340px) {
+    .form_cadastro h1{
+        font-size: 20px;
+    }
+}
+
+

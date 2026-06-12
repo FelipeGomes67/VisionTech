@@ -1,0 +1,64 @@
+/* seletor:
+. -> classe
+# -> id
+ */
+header{
+    background-color: #0d379b;
+
+    height: 75px;
+
+    /* Borda: */
+    box-shadow: 1px 4px 4px 0px #00000055;
+    position: relative;
+}
+
+.cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.cabecalho img{
+    height: 90px;
+}
+
+.link_header{
+    margin-left: 45px;
+
+    color: white;
+
+    text-decoration: none;
+}
+
+.nav_header{
+    display: flex;
+    align-items: center;
+    gap: 25px; /* espaço entre os itens */
+}
+
+@media screen and (max-width: 768px){
+    .cabecalho img{
+        height: 35px;
+    }
+
+    .link_header{
+        margin-left: 10px;
+    }
+}
+
+.theme_toggle {
+  background: transparent;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  color: inherit;
+  transition: background 0.2s;
+}
+
+.theme_toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
