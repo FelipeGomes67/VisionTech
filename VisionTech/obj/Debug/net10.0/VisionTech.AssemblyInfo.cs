@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VisionTech")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4950cd934077f732a430984c5d9a2f105e374f87")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0122e1b2555bf4f795f5674db78e6262b97ed1e")]
 [assembly: System.Reflection.AssemblyProductAttribute("VisionTech")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VisionTech")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

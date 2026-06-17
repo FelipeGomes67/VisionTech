@@ -38,7 +38,6 @@ const Header = () => {
         </Link>
 
         <nav className="nav_header">
-          <Link className="link_header" to="/">Home</Link>
           <Link className="link_header" to="/produtos">Produtos</Link>
           <Link className="link_header" to="/categorias">Categorias</Link>
           
