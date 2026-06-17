@@ -6,7 +6,8 @@ import Lista from "../../components/lista/Lista"
 import { useEffect, useState } from "react"
 import api from "../../services/Services"
 import { gerarResumo } from "../../services/IAServices"
-import { Alerta } from "../../components/alerta/Alerta"
+import { Alerta } from "../../Components/alerta/Alerta"
+import Swal from "sweetalert2"; 
 
 const CadastroProduto = () => {
 
@@ -126,77 +127,67 @@ const CadastroProduto = () => {
 
     const preEditar = async (item) => {
         const idEditar = item.idProduto || item.id;
-
-        // 1. Passo: Editar o Nome do Produto
-        const resultadoNome = await Swal.fire({
-            title: "Editar Produto",
-            input: "text",
-            inputLabel: "Nome do produto",
-            inputValue: item.nome,
-            showCancelButton: true,
-            confirmButtonText: "Próximo",
-            cancelButtonText: "Cancelar",
-            confirmButtonColor: "#112b82",
-            inputValidator: (value) => {
-                if (!value || value.trim().length === 0)
-                    return "Preencha o campo de nome!";
-            },
-        });
-
-        if (!resultadoNome.value) return;
-        const novoNome = resultadoNome.value;
-
-        // Mapeia o array de categorias para o formato de objeto key/value do SweetAlert select
-        const opcoesCategoria = {};
-        listaCategorias.forEach((c) => {
-            const id = c.idCategoria || c.id;
-            opcoesCategoria[id] = c.nome;
-        });
-
         const idCategoriaAtual = item.idCategoria || item.categoria?.idCategoria || "";
 
-        // 2. Passo: Editar a Categoria do Produto
-        const resultadoCategoria = await Swal.fire({
-            title: "Editar Produto",
-            input: "select",
-            inputLabel: "Categoria do produto",
-            inputValue: idCategoriaAtual,
-            inputOptions: opcoesCategoria,
-            showCancelButton: true,
-            confirmButtonText: "Próximo",
-            cancelButtonText: "Cancelar",
-            confirmButtonColor: "#112b82",
-            inputValidator: (value) => {
-                if (!value) return "Selecione uma categoria!";
-            },
+        // Constrói as opções do select com a categoria atual pré-selecionada
+        let selectOptionsHtml = `<option value="">Selecione uma categoria</option>`;
+        listaCategorias.forEach((c) => {
+            const id = c.idCategoria || c.id;
+            const selected = id == idCategoriaAtual ? "selected" : "";
+            selectOptionsHtml += `<option value="${id}" ${selected}>${c.nome}</option>`;
         });
 
-        if (!resultadoCategoria.value) return;
-        const novoIdCategoria = resultadoCategoria.value;
+        // 1. Popup único com múltiplos inputs usando HTML
+        const { value: formValues } = await Swal.fire({
+            title: "Editar Produto",
+            html: `
+                <div style="text-align: left; margin-bottom: 5px; font-size: 18px; font-weight: bold;">Nome do produto:</div>
+                <input id="swal-input-nome" class="swal2-input" style="width: 80%; margin: 0 auto 20px;" value="${item.nome || ""}">
+                
+                <div style="text-align: left; margin-bottom: 5px; font-size: 18px; font-weight: bold;">Categoria do produto:</div>
+                <select id="swal-input-categoria" class="swal2-select" style="display: flex; width: 80%; margin: 0 auto 20px;">
+                    ${selectOptionsHtml}
+                </select>
 
-        // 3. Passo: Mudar a Imagem do Produto (Opcional)
-        const resultadoImagem = await Swal.fire({
-            title: "Editar Imagem do Produto",
-            input: "file",
-            inputLabel: "Selecione uma nova imagem (Deixe vazio para manter a atual)",
-            inputAttributes: {
-                "accept": "image/*"
-            },
+                <div style="text-align: left; margin-bottom: 5px; font-size: 18px; font-weight: bold;">Nova imagem (opcional):</div>
+                <input type="file" id="swal-input-imagem" class="swal2-file" style="display: flex; width: 80%; margin: 0 auto;" accept="image/*">
+            `,
+            focusConfirm: false,
             showCancelButton: true,
             confirmButtonText: "Salvar",
             cancelButtonText: "Cancelar",
-            confirmButtonColor: "#112b82"
+            confirmButtonColor: "#112b82",
+            preConfirm: () => {
+                const nome = document.getElementById("swal-input-nome").value;
+                const idCategoria = document.getElementById("swal-input-categoria").value;
+                const imagemInput = document.getElementById("swal-input-imagem");
+                const imagem = imagemInput.files.length > 0 ? imagemInput.files[0] : null;
+
+                if (!nome || nome.trim().length === 0) {
+                    Swal.showValidationMessage("Preencha o campo de nome!");
+                    return false;
+                }
+                if (!idCategoria) {
+                    Swal.showValidationMessage("Selecione uma categoria!");
+                    return false;
+                }
+
+                return { nome, idCategoria, imagem };
+            }
         });
+
+        // Se o usuário clicar em Cancelar, formValues será undefined
+        if (!formValues) return;
 
         try {
             const formData = new FormData();
             formData.append("idProduto", idEditar);
-            formData.append("nome", novoNome);
-            formData.append("idCategoria", novoIdCategoria);
+            formData.append("nome", formValues.nome);
+            formData.append("idCategoria", formValues.idCategoria);
 
             // Se o usuário selecionou um novo arquivo de imagem, adiciona ao form, caso contrário mantém a antiga string
-            if (resultadoImagem.value) {
-                formData.append("imagem", resultadoImagem.value);
+            if (formValues.imagem) {
+                formData.append("imagem", formValues.imagem);
             } else {
                 formData.append("imagem", item.imagem || "");
             }

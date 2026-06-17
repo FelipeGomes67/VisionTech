@@ -1,10 +1,9 @@
-.swal2-container {
+.swal2-container:not(.swal2-toast-column) {
     background-color: rgba(13, 55, 155, 0.2) !important;
 }
 
-.swal2-popup {
+.swal2-popup:not(.toast-login-sucesso) {
     background-color: #0d379b !important;
-    
     color: white !important;
 }
 
@@ -12,19 +11,29 @@
     background-color: #254aa0 !important;
 }
 
-/* icones */
+.swal2-popup.toast-login-sucesso {
+    background-color: #ffffff !important;  
+    color: #333333 !important;              
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 8px !important;
+    padding: 15px !important;
+}
+
+.swal2-container.swal2-top-end {
+    background-color: transparent !important;
+}
+
 
 .swal2-warning {
     border-color: white !important;
     color: white !important;
 }
 
-/* success icon*/
-.swal2-success  {
+.swal2-success {
     border-color: white !important;
 }
 
-.swal2-success, .swal2-success-ring{
+.swal2-success, .swal2-success-ring {
     border: 1px solid white !important;
     border-color: white !important;
     color: white !important;
@@ -32,4 +41,37 @@
 
 .swal2-success [class^=swal2-success-line] {
     background-color: white !important;
+}
+
+/* Modo Escuro para o Toast de Sucesso */
+body.dark-mode .swal2-popup.toast-login-sucesso {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Ajustes dos inputs e selects do SweetAlert */
+.swal2-input, .swal2-select, .swal2-file {
+    color: #333333 !important; /* Texto escuro no fundo branco padrão */
+    font-size: 18px !important; /* Tamanho da fonte maior */
+    background-color: #ffffff !important;
+}
+
+.swal2-select option {
+    color: #333333;
+    background-color: #ffffff;
+}
+
+/* Modo escuro para os inputs e selects */
+body.dark-mode .swal2-input,
+body.dark-mode .swal2-select,
+body.dark-mode .swal2-file {
+    background-color: #222222 !important;
+    color: #ffffff !important;
+    border-color: #555555 !important;
+}
+
+body.dark-mode .swal2-select option {
+    background-color: #222222;
+    color: #ffffff;
 }

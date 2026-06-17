@@ -17,6 +17,11 @@ public class UsuarioController : ControllerBase
         _usuarioRepository = usuarioRepository;
     }
 
+
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de lista de usuários
+    /// </summary>
+    /// <returns>Status code 200 e a lista de usuários</returns>
     [HttpGet]
     public IActionResult Get()
     {
@@ -30,6 +35,11 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de buscar um usuário
+    /// </summary>
+    /// <param name="id">id do usuário buscado</param>
+    /// <returns>status code 200 e o usuário buscado</returns>
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
@@ -44,7 +54,11 @@ public class UsuarioController : ControllerBase
         }
     }
 
-
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de cadastro um usuário
+    /// </summary>
+    /// <param name="dto">Usuário a ser cadastrado</param>
+    /// <returns>Status code 201 e o usuário a ser cadastrado</returns>
     [HttpPost]
     public IActionResult Cadastrar(UsuarioDTO dto)
     {
@@ -67,6 +81,11 @@ public class UsuarioController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de deletar um usuário
+    /// </summary>
+    /// <param name="id">Id do usuário</param>
+    /// <returns>Status code 204</returns>
     [HttpDelete("{id}")]
     public IActionResult Deletar(Guid id)
     {

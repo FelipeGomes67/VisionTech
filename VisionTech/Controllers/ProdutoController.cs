@@ -1,4 +1,4 @@
-ï»¿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using VisionTech.DTO;
 using VisionTech.Interface;
@@ -18,6 +18,11 @@ public class ProdutoController : ControllerBase
         _produtoRepository = produtoRepository;
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de buscar um produto por ID
+    /// </summary>
+    /// <param name="id">Id do produto buscado</param>
+    /// <returns>Status code 200 e o produto buscado</returns>
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
@@ -28,12 +33,13 @@ public class ProdutoController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
-
         }
     }
 
-
-
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de listagem de produtos
+    /// </summary>
+    /// <returns>Status code 200 e a lista de produtos</returns>
     //[Authorize]
     [HttpGet]
     public IActionResult Get()
@@ -48,11 +54,16 @@ public class ProdutoController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de cadastrar um produto, realizando o upload de imagem
+    /// </summary>
+    /// <param name="novoProduto">Dados e arquivo de imagem do produto a ser cadastrado</param>
+    /// <returns>Status code 201 em caso de sucesso</returns>
     [HttpPost]
     public async Task<IActionResult> Post([FromForm] ProdutoDTO novoProduto)
     {
         if (String.IsNullOrWhiteSpace(novoProduto.Nome) || novoProduto.IdCategoria == null)
-            return BadRequest("Ã‰ obrigatÃ³rio que o filme tenha nome e GÃªnero vÃ¡lido.");
+            return BadRequest("É obrigatório que o filme tenha nome e Gênero válido.");
 
         Produto produto = new Produto();
 
@@ -63,7 +74,6 @@ public class ProdutoController : ControllerBase
 
             var pastaRelativa = "wwwroot/imagens";
             var caminhoPasta = Path.Combine(Directory.GetCurrentDirectory(), pastaRelativa);
-
 
             if (!Directory.Exists(caminhoPasta))
                 Directory.CreateDirectory(caminhoPasta);
@@ -93,12 +103,18 @@ public class ProdutoController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de atualizar um produto enviando o ID pela URL e dados via Form
+    /// </summary>
+    /// <param name="id">Id do produto a ser atualizado</param>
+    /// <param name="produto">Novos dados e nova imagem (opcional) do produto</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpPut("{id}")]
     public async Task<IActionResult> Put(Guid id, [FromForm] ProdutoDTO produto)
     {
         var produtoBuscado = _produtoRepository.BuscarPorId(id);
         if (produtoBuscado == null)
-            return NotFound("Produto nÃ£o encontrado!");
+            return NotFound("Produto não encontrado!");
 
         if (!String.IsNullOrWhiteSpace(produto.Nome))
             produtoBuscado.Nome = produto.Nome;
@@ -143,8 +159,13 @@ public class ProdutoController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de atualizar um produto recebendo o objeto completo no corpo da requisição
+    /// </summary>
+    /// <param name="produtoAtualizado">Objeto do produto com os dados atualizados</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpPut]
-    public IActionResult PutBody([FromBody] Produto produtoAtualizado) // ðŸ‘ˆ ADICIONADO [FromBody] PARA ISOLAR O COMPORTAMENTO
+    public IActionResult PutBody([FromBody] Produto produtoAtualizado)
     {
         try
         {
@@ -157,12 +178,17 @@ public class ProdutoController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de deletar um produto e remover seu respectivo arquivo físico de imagem
+    /// </summary>
+    /// <param name="id">Id do produto a ser deletado</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpDelete("{id}")]
     public IActionResult Delete(Guid id)
     {
         var produtoBuscado = _produtoRepository.BuscarPorId(id);
         if (produtoBuscado == null)
-            return NotFound("Produto nÃ£o encontrado!");
+            return NotFound("Produto não encontrado!");
 
         var pastaRelativa = "wwwroot/imagens";
         var caminhoPasta = Path.Combine(Directory.GetCurrentDirectory(), pastaRelativa);

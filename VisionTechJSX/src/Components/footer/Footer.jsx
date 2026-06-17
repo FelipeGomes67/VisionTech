@@ -4,7 +4,7 @@ const Footer = () => {
 
   return (
     <footer >
-      <p>© {new Date().getFullYear()} - Projeto Filmes SENAI - Todos os direitos reservados.</p>
+      <p>© {new Date().getFullYear()} - Vision Tech - Todos os direitos reservados.</p>
     </footer>
   );
 };

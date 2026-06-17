@@ -4,9 +4,10 @@ import Logo from "../../assets/img/logo.png";
 import { useContext, useEffect, useState } from "react";
 import { UsuarioContext } from "../../context/UsuarioContext";
 import { useNavigate } from "react-router-dom";
-import { Alerta } from "../../components/alerta/Alerta";
+import { Alerta } from "../../Components/alerta/Alerta";
 import api from "../../services/Services";
 import { jwtDecode } from "jwt-decode";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -56,13 +57,42 @@ const Login = () => {
       localStorage.setItem("usuario", JSON.stringify(usuarioDecoder));
       setNovoUsuario("");
       setSenha("");
-      Alerta({
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        icon: "success",
         title: "Login bem-sucedido",
         text: "Bem-vindo de volta!",
-        icon: "success",
-        confirmButtonColor: "#CC3F55",
+        customClass: {
+          popup: 'toast-login-sucesso'
+        },
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+
+          const icon = toast.querySelector('.swal2-success');
+          if (icon) {
+            icon.setAttribute('style', 'display: flex !important; border-color: #28a745 !important; color: #28a745 !important; margin: 0 10px 0 0 !important; align-items: center !important; justify-content: center !important; background-color: transparent !important;');
+
+            icon.querySelectorAll('[class^=swal2-success-line]').forEach(line => {
+              line.setAttribute('style', 'background-color: #28a745 !important; display: block !important;');
+            });
+
+            icon.querySelectorAll('.swal2-success-circular-line, .swal2-success-fix, .swal2-success-ring').forEach(el => {
+              el.setAttribute('style', 'display: none !important; background-color: transparent !important;');
+            });
+          }
+
+          const progressBar = toast.querySelector('.swal2-timer-progress-bar');
+          if (progressBar) {
+            progressBar.setAttribute('style', 'background-color: #28a745 !important;');
+          }
+        }
       });
-      navigate("/generos");
+      navigate("/categorias");
     }
     catch (err) {
       console.error("Erro detalhado retornado da API:", err.response?.data);

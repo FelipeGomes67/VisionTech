@@ -5,7 +5,7 @@ import Cadastro from "../../Components/cadastro/Cadastro";
 import Lista from "../../components/lista/Lista";
 import { useEffect, useState } from "react";
 import api from "../../services/Services";
-import { Alerta } from "../../components/alerta/Alerta";
+import { Alerta } from "../../Components/alerta/Alerta";
 
 const CadastroCategoria = () => {
   const [valor, setValor] = useState("");

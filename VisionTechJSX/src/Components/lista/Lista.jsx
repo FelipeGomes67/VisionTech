@@ -3,7 +3,7 @@ import "./Lista.css";
 // Importação de imagens:
 import Editar from "../../assets/img/boxicons_edit-filled.svg";
 import Excluir from "../../assets/img/gg_trash.svg";
-import Visualizar from "../../assets/img/eye.png";
+import Visualizar from "../../assets/img/eye.svg";
 
 const Lista = (props) => {
 

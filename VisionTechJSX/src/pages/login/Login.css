@@ -68,6 +68,11 @@
     box-shadow: 1px 4px 4px 0px #00000045;
 }
 
+.section_login img {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
 /* RESPONSIVIDADE 😊🤪🎉 */
 
 /* Me de algumas caracteristicas a 
@@ -80,3 +85,12 @@ partir de um tamanho de tela */
     }
 }
 
+/* Modo Escuro */
+body.dark-mode .section_login {
+    background-color: #111111;
+}
+
+body.dark-mode .campo_input input {
+    background-color: #222222;
+    color: #ffffff;
+}

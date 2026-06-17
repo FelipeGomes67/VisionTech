@@ -13,6 +13,6 @@ footer {
   transition: background-color 0.3s;
 }
 
-footer.footer_dark {
+body.dark-mode footer {
   background-color: #111111;
 }

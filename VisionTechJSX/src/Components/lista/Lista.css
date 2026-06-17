@@ -115,4 +115,11 @@
     width: fit-content;
 }
   
+/* Modo Escuro */
+body.dark-mode .listagem hr {
+    border-color: #ffffff;
+}
 
+body.dark-mode .item_lista {
+    border-bottom: solid 1px #ffffff30;
+}

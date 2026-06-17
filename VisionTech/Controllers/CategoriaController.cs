@@ -16,6 +16,11 @@ public class CategoriaController : ControllerBase
         _categoriaRepository = categoriaRepository;
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de buscar uma categoria por ID
+    /// </summary>
+    /// <param name="id">Id da categoria buscada</param>
+    /// <returns>Status code 200 e a categoria buscada</returns>
     [HttpGet("{id}")]
     public IActionResult GetById(Guid id)
     {
@@ -26,11 +31,13 @@ public class CategoriaController : ControllerBase
         catch (Exception ex)
         {
             return BadRequest(ex.Message);
-
         }
     }
 
-
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de listagem de categorias
+    /// </summary>
+    /// <returns>Status code 200 e a lista de categorias</returns>
     [HttpGet]
     public IActionResult Get()
     {
@@ -44,7 +51,11 @@ public class CategoriaController : ControllerBase
         }
     }
 
-
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de cadastrar uma nova categoria
+    /// </summary>
+    /// <param name="novaCategoria">Objeto da categoria a ser cadastrada</param>
+    /// <returns>Status code 201 em caso de sucesso</returns>
     [HttpPost]
     public IActionResult Post(Categoria novaCategoria)
     {
@@ -59,6 +70,12 @@ public class CategoriaController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de atualizar uma categoria passando o ID pela URL
+    /// </summary>
+    /// <param name="id">Id da categoria a ser atualizada</param>
+    /// <param name="categoriaAtualizada">Objeto com os novos dados da categoria</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpPut("{id}")]
     public IActionResult Put(Guid id, Categoria categoriaAtualizada)
     {
@@ -73,6 +90,11 @@ public class CategoriaController : ControllerBase
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de atualizar uma categoria recebendo o objeto completo no corpo da requisição
+    /// </summary>
+    /// <param name="categoriaAtualizada">Objeto da categoria com os dados atualizados</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpPut]
     public IActionResult PutBody(Categoria categoriaAtualizada)
     {
@@ -83,11 +105,15 @@ public class CategoriaController : ControllerBase
         }
         catch (Exception e)
         {
-
             return BadRequest(e.Message);
         }
     }
 
+    /// <summary>
+    /// Endpoint da API que faz a chamada para o método de deletar uma categoria por ID
+    /// </summary>
+    /// <param name="id">Id da categoria a ser deletada</param>
+    /// <returns>Status code 204 (NoContent)</returns>
     [HttpDelete("{id}")]
     public IActionResult Delete(Guid id)
     {
