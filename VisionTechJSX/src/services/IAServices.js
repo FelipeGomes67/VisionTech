@@ -1,6 +1,6 @@
 import api from "./Services";
 
-const API_KEY = "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";
+const API_KEY = "";
 
 export const gerarResumo = async (titulo, descricao = "") => {
   try {
