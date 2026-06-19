@@ -39,6 +39,7 @@ const Lista = (props) => {
                             <tr className="table_cabecalho">
                                 <th>Nome</th>
                                 {exibirCamposProduto && <th>Categoria</th>}
+                                {exibirCamposProduto && <th>Estoque</th>} {/* ADICIONADO AQUI */}
                                 {exibirCamposProduto && <th>Imagem</th>}
                                 <th>Editar</th>
                                 {props.fnResumo && <th>Resumo</th>}
@@ -57,6 +58,13 @@ const Lista = (props) => {
                                         {exibirCamposProduto && (
                                             <td data-cell="Categoria">
                                                 {obterNomeCategoria(item)}
+                                            </td>
+                                        )}
+
+                                        {/* ADICIONADO AQUI: Exibe a quantidade em estoque */}
+                                        {exibirCamposProduto && (
+                                            <td data-cell="Estoque">
+                                                {item.quantidadeEstoque ?? 0}
                                             </td>
                                         )}
 
@@ -95,7 +103,8 @@ const Lista = (props) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={exibirCamposProduto ? 5 : 3} style={{ textAlign: "center", padding: "20px" }}>
+                                    {/* Ajustado o colSpan para incluir a nova coluna de estoque quando for produto */}
+                                    <td colSpan={exibirCamposProduto ? (props.fnResumo ? 7 : 6) : 3} style={{ textAlign: "center", padding: "20px" }}>
                                         Nenhum registro encontrado.
                                     </td>
                                 </tr>

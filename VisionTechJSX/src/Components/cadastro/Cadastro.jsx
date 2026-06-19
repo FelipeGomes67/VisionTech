@@ -3,7 +3,6 @@ import Botao from "../../components/botao/Botao";
 
 const Cadastro = (props) => {
 
-    // Essa variável já identifica se estamos cadastrando um Produto ou Categoria
     const exibirCamposProduto = props.visibilidade !== "none";
 
     return (
@@ -25,7 +24,7 @@ const Cadastro = (props) => {
                         />
                     </div>
 
-                    {/* MODIFICADO AQUI: A imagem só renderiza se for um Produto */}
+                    {/* Campo Imagem */}
                     {exibirCamposProduto && (
                         <div className="campo_cad_imagem">
                             <label htmlFor="imagem">Imagem</label>
@@ -36,6 +35,47 @@ const Cadastro = (props) => {
                                 accept="image/*"
                                 onChange={(e) => props.setImagem(e.target.files[0])}
                             />
+                        </div>
+                    )}
+
+                    {/* Campo Estoque Customizado */}
+                    {exibirCamposProduto && (
+                        <div className="campo_cad_estoque">
+                            <label htmlFor="estoque">Quantidade em Estoque</label>
+
+                            <div className="estoque_container">
+                                {/* Botão de Menos */}
+                                <button
+                                    type="button"
+                                    className="estoque_btn"
+                                    onClick={() => props.setValorEstoque(Math.max(0, (props.valorEstoque || 0) - 1))}
+                                >
+                                    -
+                                </button>
+
+                                {/* Input numérico centralizado */}
+                                <input
+                                    type="number"
+                                    name="estoque"
+                                    id="estoque"
+                                    min="0"
+                                    className="estoque_input"
+                                    value={props.valorEstoque ?? 0}
+                                    onChange={(e) => {
+                                        const val = parseInt(e.target.value, 10);
+                                        props.setValorEstoque(isNaN(val) || val < 0 ? 0 : val);
+                                    }}
+                                />
+
+                                {/* Botão de Mais */}
+                                <button
+                                    type="button"
+                                    className="estoque_btn"
+                                    onClick={() => props.setValorEstoque((props.valorEstoque || 0) + 1)}
+                                >
+                                    +
+                                </button>
+                            </div>
                         </div>
                     )}
 

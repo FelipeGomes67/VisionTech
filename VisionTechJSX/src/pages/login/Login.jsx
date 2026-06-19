@@ -102,8 +102,6 @@ const Login = () => {
         text: err.response?.data || "E-mail ou senha incorretos.",
         icon: "error",
         confirmButtonColor: "#CC3F55",
-        confirmButtonText: "Ok",
-
       });
     }
   };

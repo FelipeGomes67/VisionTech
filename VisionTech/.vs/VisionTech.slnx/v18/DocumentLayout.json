@@ -1,14 +1,30 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\52611156808\\Desktop\\VisionTech\\VisionTech\\",
+  "WorkspaceRootPath": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\52611156808\\desktop\\visiontech\\visiontech\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\repository\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:repository\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\52611156808\\desktop\\visiontech\\visiontech\\repository\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:repository\\produtorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:controllers\\produtocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\models\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:models\\produto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\dto\\produtodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:dto\\produtodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|c:\\users\\42400772819\\desktop\\visiontech\\visiontech\\bdcontexttarefas\\tarefascontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EBCEFC0D-7F7D-5DD2-DD41-839A31A46A92}|VisionTech.csproj|solutionrelative:bdcontexttarefas\\tarefascontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,28 +42,76 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "UsuarioRepository.cs",
-              "DocumentMoniker": "C:\\Users\\52611156808\\Desktop\\VisionTech\\VisionTech\\Repository\\UsuarioRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\UsuarioRepository.cs",
-              "ToolTip": "C:\\Users\\52611156808\\Desktop\\VisionTech\\VisionTech\\Repository\\UsuarioRepository.cs",
-              "RelativeToolTip": "Repository\\UsuarioRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAABAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "Produto.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Models\\Produto.cs",
+              "RelativeDocumentMoniker": "Models\\Produto.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Models\\Produto.cs",
+              "RelativeToolTip": "Models\\Produto.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBgAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T12:34:49.854Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-06-19T11:40:59.706Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProdutoController.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Controllers\\ProdutoController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProdutoController.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Controllers\\ProdutoController.cs",
+              "RelativeToolTip": "Controllers\\ProdutoController.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAqwF4AAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-19T11:39:21.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProdutoDTO.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\DTO\\ProdutoDTO.cs",
+              "RelativeDocumentMoniker": "DTO\\ProdutoDTO.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\DTO\\ProdutoDTO.cs",
+              "RelativeToolTip": "DTO\\ProdutoDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-19T11:39:00.84Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TarefasContext.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\BdContextTarefas\\TarefasContext.cs",
+              "RelativeDocumentMoniker": "BdContextTarefas\\TarefasContext.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\BdContextTarefas\\TarefasContext.cs",
+              "RelativeToolTip": "BdContextTarefas\\TarefasContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-19T11:37:03.944Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProdutoRepository.cs",
-              "DocumentMoniker": "C:\\Users\\52611156808\\Desktop\\VisionTech\\VisionTech\\Repository\\ProdutoRepository.cs",
-              "RelativeDocumentMoniker": "Repository\\ProdutoRepository.cs",
-              "ToolTip": "C:\\Users\\52611156808\\Desktop\\VisionTech\\VisionTech\\Repository\\ProdutoRepository.cs",
-              "RelativeToolTip": "Repository\\ProdutoRepository.cs",
-              "ViewState": "AgIAAGsAAAAAAAAAAAA9wI8AAAABAAAAAAAAAA==",
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Repository\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\UsuarioRepository.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Repository\\UsuarioRepository.cs",
+              "RelativeToolTip": "Repository\\UsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-06-17T12:34:53.755Z"
+              "WhenOpened": "2026-06-17T12:34:49.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProdutoRepository.cs",
+              "DocumentMoniker": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Repository\\ProdutoRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\ProdutoRepository.cs",
+              "ToolTip": "C:\\Users\\42400772819\\Desktop\\VisionTech\\VisionTech\\Repository\\ProdutoRepository.cs",
+              "RelativeToolTip": "Repository\\ProdutoRepository.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAAAJEAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-17T12:34:53.755Z",
+              "EditorCaption": ""
             }
           ]
         }

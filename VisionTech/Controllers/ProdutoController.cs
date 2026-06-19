@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using VisionTech.DTO;
 using VisionTech.Interface;
 using VisionTech.Models;
-using static System.Net.WebRequestMethods;
 
 namespace VisionTech.Controllers;
 
@@ -28,7 +27,11 @@ public class ProdutoController : ControllerBase
     {
         try
         {
-            return Ok(_produtoRepository.BuscarPorId(id));
+            var produto = _produtoRepository.BuscarPorId(id);
+            if (produto == null)
+                return NotFound("Produto não encontrado!");
+
+            return Ok(produto);
         }
         catch (Exception ex)
         {
@@ -40,7 +43,6 @@ public class ProdutoController : ControllerBase
     /// Endpoint da API que faz a chamada para o método de listagem de produtos
     /// </summary>
     /// <returns>Status code 200 e a lista de produtos</returns>
-    //[Authorize]
     [HttpGet]
     public IActionResult Get()
     {
@@ -63,7 +65,7 @@ public class ProdutoController : ControllerBase
     public async Task<IActionResult> Post([FromForm] ProdutoDTO novoProduto)
     {
         if (String.IsNullOrWhiteSpace(novoProduto.Nome) || novoProduto.IdCategoria == null)
-            return BadRequest("É obrigatório que o filme tenha nome e Gênero válido.");
+            return BadRequest("É obrigatório que o produto tenha nome e Categoria válida.");
 
         Produto produto = new Produto();
 
@@ -90,6 +92,7 @@ public class ProdutoController : ControllerBase
 
         produto.IdCategoria = novoProduto.IdCategoria.ToString();
         produto.Nome = novoProduto.Nome!;
+        produto.QuantidadeEstoque = novoProduto.QuantidadeEstoque;
 
         try
         {
@@ -121,6 +124,9 @@ public class ProdutoController : ControllerBase
 
         if (produto.IdCategoria != null && produto.IdCategoria.ToString() != produtoBuscado.IdCategoria)
             produtoBuscado.IdCategoria = produto.IdCategoria.ToString();
+
+        // Atualiza o estoque se um novo valor for enviado no Form
+        produtoBuscado.QuantidadeEstoque = produto.QuantidadeEstoque;
 
         if (produto.Imagem != null && produto.Imagem.Length != 0)
         {
@@ -160,7 +166,7 @@ public class ProdutoController : ControllerBase
     }
 
     /// <summary>
-    /// Endpoint da API que faz a chamada para o método de atualizar um produto recebendo o objeto completo no corpo da requisição
+    /// Endpoint da API que faz a chamada para o método de atualizar um produto
     /// </summary>
     /// <param name="produtoAtualizado">Objeto do produto com os dados atualizados</param>
     /// <returns>Status code 204 (NoContent)</returns>
@@ -179,7 +185,7 @@ public class ProdutoController : ControllerBase
     }
 
     /// <summary>
-    /// Endpoint da API que faz a chamada para o método de deletar um produto e remover seu respectivo arquivo físico de imagem
+    /// Endpoint da API que faz a chamada para o método de deletar um produto
     /// </summary>
     /// <param name="id">Id do produto a ser deletado</param>
     /// <returns>Status code 204 (NoContent)</returns>

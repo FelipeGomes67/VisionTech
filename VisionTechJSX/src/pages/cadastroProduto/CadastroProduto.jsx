@@ -7,13 +7,14 @@ import { useEffect, useState } from "react"
 import api from "../../services/Services"
 import { gerarResumo } from "../../services/IAServices"
 import { Alerta } from "../../Components/alerta/Alerta"
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 
 const CadastroProduto = () => {
 
     const [valor, setValor] = useState("");
     const [idCategoria, setIdCategoria] = useState("");
     const [imagem, setImagem] = useState(null);
+    const [quantidadeEstoque, setQuantidadeEstoque] = useState(0); // Estado criado para controlar a quantidade
     const [listaProdutos, setListaProdutos] = useState([]);
     const [listaCategorias, setListaCategorias] = useState([]);
     const [showLoading, setShowLoading] = useState(false);
@@ -70,14 +71,23 @@ const CadastroProduto = () => {
             });
             return false;
         }
-
+        if (quantidadeEstoque === "" || quantidadeEstoque === null || quantidadeEstoque < 0) {
+            Alerta({
+                title: 'Cadastro de Produto',
+                text: 'Por favor, insira uma quantidade válida (maior ou igual a 0)!',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+            return false;
+        }
         try {
             // 2. Criação do FormData exigido pelo [FromForm] da API do C#
             const formData = new FormData();
 
-            // Chaves mapeadas exatamente como o ProdutoDTO espera no C# (Nome, IdCategoria, Imagem)
+            // Chaves mapeadas exatamente como o ProdutoDTO espera no C# (Nome, IdCategoria, Imagem, QuantidadeEstoque)
             formData.append("Nome", valor.trim());
             formData.append("IdCategoria", idCategoria);
+            formData.append("QuantidadeEstoque", quantidadeEstoque); // Adicionado ao envio do cadastro
 
             // Se houver arquivo de imagem selecionado no estado do seu formulário, anexa ele
             if (imagem) {
@@ -98,6 +108,7 @@ const CadastroProduto = () => {
                 // Limpa os campos do formulário após o sucesso
                 setValor("");
                 setIdCategoria("");
+                setQuantidadeEstoque(0); // Reseta a quantidade após cadastrar
                 if (setImagem) setImagem(null); // Reseta o input de arquivo, se aplicável
 
                 // Atualiza a listagem na tela
@@ -149,6 +160,9 @@ const CadastroProduto = () => {
                     ${selectOptionsHtml}
                 </select>
 
+                <div style="text-align: left; margin-bottom: 5px; font-size: 18px; font-weight: bold;">Quantidade em Estoque:</div>
+                <input type="number" id="swal-input-estoque" class="swal2-input" style="width: 80%; margin: 0 auto 20px;" value="${item.quantidadeEstoque || 0}">
+
                 <div style="text-align: left; margin-bottom: 5px; font-size: 18px; font-weight: bold;">Nova imagem (opcional):</div>
                 <input type="file" id="swal-input-imagem" class="swal2-file" style="display: flex; width: 80%; margin: 0 auto;" accept="image/*">
             `,
@@ -160,6 +174,7 @@ const CadastroProduto = () => {
             preConfirm: () => {
                 const nome = document.getElementById("swal-input-nome").value;
                 const idCategoria = document.getElementById("swal-input-categoria").value;
+                const quantidadeEstoque = document.getElementById("swal-input-estoque").value;
                 const imagemInput = document.getElementById("swal-input-imagem");
                 const imagem = imagemInput.files.length > 0 ? imagemInput.files[0] : null;
 
@@ -171,12 +186,15 @@ const CadastroProduto = () => {
                     Swal.showValidationMessage("Selecione uma categoria!");
                     return false;
                 }
+                if (quantidadeEstoque === "" || isNaN(quantidadeEstoque)) {
+                    Swal.showValidationMessage("Insira uma quantidade válida!");
+                    return false;
+                }
 
-                return { nome, idCategoria, imagem };
+                return { nome, idCategoria, quantidadeEstoque, imagem };
             }
         });
 
-        // Se o usuário clicar em Cancelar, formValues será undefined
         if (!formValues) return;
 
         try {
@@ -184,21 +202,20 @@ const CadastroProduto = () => {
             formData.append("idProduto", idEditar);
             formData.append("nome", formValues.nome);
             formData.append("idCategoria", formValues.idCategoria);
+            formData.append("quantidadeEstoque", formValues.quantidadeEstoque); // Adicionado à edição do produto
 
-            // Se o usuário selecionou um novo arquivo de imagem, adiciona ao form, caso contrário mantém a antiga string
             if (formValues.imagem) {
                 formData.append("imagem", formValues.imagem);
             } else {
                 formData.append("imagem", item.imagem || "");
             }
 
-            // Removido o "/api" manual para evitar o erro de rota duplicada (.../api/api/...)
             const retornoAPI = await api.put(`/Produto/${idEditar}`, formData);
 
             if (retornoAPI.status === 204 || retornoAPI.status === 200) {
                 Swal.fire({
                     title: 'Edição de Produto',
-                    text: 'Produto atualizado com sucesso!',
+                    text: 'Produto updated com sucesso!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 });
@@ -317,7 +334,8 @@ const CadastroProduto = () => {
                     setValorCategoria={setIdCategoria}
                     listaCategorias={listaCategorias}
                     setImagem={setImagem}
-                />
+                    valorEstoque={quantidadeEstoque}
+                    setValorEstoque={setQuantidadeEstoque} />
 
                 <Lista
                     tituloLista="Lista de Produtos"

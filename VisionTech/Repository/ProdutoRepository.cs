@@ -1,9 +1,7 @@
-using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using VisionTech.Interface;
 using VisionTech.Models;
 using VisionTech.VisionTechBd;
-using static System.Net.WebRequestMethods;
 
 namespace VisionTech.Repository;
 
@@ -25,13 +23,18 @@ public class ProdutoRepository : IProdutoRepository
         try
         {
             Produto produtoBuscado = _context.Produtos.Find(produtoAtualizado.IdProduto)!;
+
             if (produtoBuscado != null)
             {
+                // Atualiza as propriedades necessárias (menos o ID)
                 produtoBuscado.Nome = produtoAtualizado.Nome;
-                produtoBuscado.IdProduto = produtoAtualizado.IdProduto;
+                produtoBuscado.Imagem = produtoAtualizado.Imagem;
+                produtoBuscado.QuantidadeEstoque = produtoAtualizado.QuantidadeEstoque; // Refletindo a Opção 1 escolhida
+                produtoBuscado.IdCategoria = produtoAtualizado.IdCategoria;
+
+                _context.Produtos.Update(produtoBuscado);
+                _context.SaveChanges();
             }
-            _context.Produtos.Update(produtoBuscado!);
-            _context.SaveChanges();
         }
         catch (Exception)
         {
@@ -52,11 +55,15 @@ public class ProdutoRepository : IProdutoRepository
 
             if (produtoBuscado != null)
             {
+                // Atualiza as propriedades necessárias (menos o ID)
                 produtoBuscado.Nome = produtoAtualizado.Nome;
-                produtoBuscado.IdProduto = produtoAtualizado.IdProduto;
+                produtoBuscado.Imagem = produtoAtualizado.Imagem;
+                produtoBuscado.QuantidadeEstoque = produtoAtualizado.QuantidadeEstoque; // Refletindo a Opção 1 escolhida
+                produtoBuscado.IdCategoria = produtoAtualizado.IdCategoria;
+
+                _context.Produtos.Update(produtoBuscado);
+                _context.SaveChanges();
             }
-            _context.Produtos.Update(produtoBuscado!);
-            _context.SaveChanges();
         }
         catch (Exception)
         {
@@ -73,8 +80,7 @@ public class ProdutoRepository : IProdutoRepository
     {
         try
         {
-            Produto produtoBuscado = _context.Produtos.Find(id.ToString())!;
-            return produtoBuscado;
+            return _context.Produtos.Find(id.ToString())!;
         }
         catch (Exception)
         {
@@ -90,6 +96,7 @@ public class ProdutoRepository : IProdutoRepository
     {
         try
         {
+            // Garante a geração de um ID string válido baseado em Guid para o banco
             novoProduto.IdProduto = Guid.NewGuid().ToString();
 
             _context.Produtos.Add(novoProduto);
@@ -113,8 +120,8 @@ public class ProdutoRepository : IProdutoRepository
             if (produtoBuscado != null)
             {
                 _context.Produtos.Remove(produtoBuscado);
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
         }
         catch (Exception)
         {
@@ -130,11 +137,9 @@ public class ProdutoRepository : IProdutoRepository
     {
         try
         {
-            List<Produto> listaProdutos = _context.Produtos
+            return _context.Produtos
                 .Include(c => c.IdCategoriaNavigation)
                 .ToList();
-
-            return listaProdutos;
         }
         catch (Exception)
         {

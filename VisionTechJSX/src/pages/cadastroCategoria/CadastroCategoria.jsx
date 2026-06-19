@@ -13,7 +13,7 @@ const CadastroCategoria = () => {
 
   const getCategorias = async () => {
     try {
-      const retornoAPI = await api.get("/categoria");
+      const retornoAPI = await api.get("/Categoria");
       const dados = retornoAPI.data;
       setListaCategorias(dados);
     } catch (error) {
@@ -45,7 +45,7 @@ const CadastroCategoria = () => {
     };
 
     try {
-      const retornoAPI = await api.post("/categoria", objCadastro);
+      const retornoAPI = await api.post("/Categoria", objCadastro);
 
       if (retornoAPI.status === 201 || retornoAPI.status === 200) {
         Alerta({
@@ -102,7 +102,7 @@ const preEditar = async (item) => {
     };
 
     try {
-        const retornoAPI = await api.put(`/categoria/${idEditar}`, objEditar);
+        const retornoAPI = await api.put(`/Categoria/${idEditar}`, objEditar);
 
         if (retornoAPI.status === 204 || retornoAPI.status === 200) {
             Alerta({
@@ -151,7 +151,7 @@ const preEditar = async (item) => {
     }
 
     try {
-      const retornoAPI = await api.delete(`/categoria/${idExcluir}`);
+      const retornoAPI = await api.delete(`/Categoria/${idExcluir}`);
 
       if (retornoAPI.status === 204 || retornoAPI.status === 200) {
         Alerta({

@@ -246,13 +246,17 @@
                   "Nome": {
                     "type": "string"
                   },
+                  "IdCategoria": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
                   "Imagem": {
                     "type": "string",
                     "format": "binary"
                   },
-                  "IdCategoria": {
-                    "type": "string",
-                    "format": "uuid"
+                  "QuantidadeEstoque": {
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               },
@@ -260,10 +264,13 @@
                 "Nome": {
                   "style": "form"
                 },
+                "IdCategoria": {
+                  "style": "form"
+                },
                 "Imagem": {
                   "style": "form"
                 },
-                "IdCategoria": {
+                "QuantidadeEstoque": {
                   "style": "form"
                 }
               }
@@ -322,13 +329,17 @@
                   "Nome": {
                     "type": "string"
                   },
+                  "IdCategoria": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
                   "Imagem": {
                     "type": "string",
                     "format": "binary"
                   },
-                  "IdCategoria": {
-                    "type": "string",
-                    "format": "uuid"
+                  "QuantidadeEstoque": {
+                    "type": "integer",
+                    "format": "int32"
                   }
                 }
               },
@@ -336,10 +347,13 @@
                 "Nome": {
                   "style": "form"
                 },
+                "IdCategoria": {
+                  "style": "form"
+                },
                 "Imagem": {
                   "style": "form"
                 },
-                "IdCategoria": {
+                "QuantidadeEstoque": {
                   "style": "form"
                 }
               }
@@ -514,6 +528,9 @@
         "additionalProperties": false
       },
       "Produto": {
+        "required": [
+          "quantidadeEstoque"
+        ],
         "type": "object",
         "properties": {
           "idProduto": {
@@ -533,6 +550,10 @@
             "minLength": 0,
             "type": "string",
             "nullable": true
+          },
+          "quantidadeEstoque": {
+            "type": "integer",
+            "format": "int32"
           },
           "idCategoria": {
             "maxLength": 40,

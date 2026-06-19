@@ -1,6 +1,6 @@
 import api from "./Services";
 
-const API_KEY = "";
+const API_KEY = "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";
 
 export const gerarResumo = async (titulo, descricao = "") => {
   try {
@@ -12,13 +12,7 @@ export const gerarResumo = async (titulo, descricao = "") => {
           {
             role: "user",
             content: `
-              Faça um resumo simples e bem curto do produto abaixo.
-              
-              ATENÇÃO ÀS REGRAS DE FORMATAÇÃO:
-              - Responda APENAS em texto puro (plain text).
-              - Não use nenhum asterisco (* ou **) em momento algum.
-              - Não use negrito, itálico ou listas com marcadores.
-              - Escreva a resposta em um único parágrafo contínuo.
+              Faça um resumo simples bem resumido do produto abaixo:
 
               Produto: ${titulo}
             `,

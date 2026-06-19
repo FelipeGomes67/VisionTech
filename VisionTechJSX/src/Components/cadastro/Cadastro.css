@@ -85,6 +85,53 @@
     transition: background 0.2s ease;
 }
 
+.campo_cad_estoque {
+    display: flex;
+    flex-direction: column;
+}
+
+.estoque_container {
+    display: flex;
+    align-items: center;
+    max-width: 150px;
+    height: 35px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 7px;
+}
+
+.estoque_btn {
+    width: 35px;
+    height: 100%;
+    border: none;
+    background-color: #112b82;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.estoque_btn:hover {
+    background-color: #1d3ca3;
+}
+
+.estoque_input {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    background-color: #ffffff;
+    appearance: textfield;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+}
+
 .campo_cad_imagem input[type="file"]::file-selector-button:hover {
     background-color: #1d3ca3;
 }
@@ -120,4 +167,22 @@ body.dark-mode .campo_cad_imagem input[type="file"]::file-selector-button {
 
 body.dark-mode .campo_cad_imagem input[type="file"]::file-selector-button:hover {
     background-color: #444444;
+}
+
+body.dark-mode .estoque_container {
+    border-color: #444444;
+}
+
+body.dark-mode .estoque_btn {
+    background-color: #333333;
+    color: #ffffff;
+}
+
+body.dark-mode .estoque_btn:hover {
+    background-color: #444444;
+}
+
+body.dark-mode .estoque_input {
+    background-color: #222222;
+    color: #ffffff;
 }

@@ -6,7 +6,7 @@ GO
 
 CREATE TABLE Categoria(
 	IdCategoria VARCHAR(40) PRIMARY KEY NOT NULL,
-	Nome VARCHAR(100) NOT NULL,
+	Nome VARCHAR(100) NOT NULL
 );
 GO
 
@@ -14,6 +14,7 @@ CREATE TABLE Produto(
 	IdProduto VARCHAR(40) PRIMARY KEY NOT NULL,
 	Nome VARCHAR(100) NOT NULL,
 	Imagem VARCHAR(100),
+	QuantidadeEstoque INT NOT NULL DEFAULT 0, -- Novo campo de estoque adicionado aqui
 	IdCategoria VARCHAR(40) FOREIGN KEY REFERENCES Categoria(IdCategoria)
 );
 GO
@@ -22,11 +23,9 @@ CREATE TABLE Usuario(
 	IdUsuario VARCHAR(40) PRIMARY KEY NOT NULL,
 	Nome VARCHAR(100) NOT NULL,
 	Senha VARCHAR(60) NOT NULL,
-	Email VARCHAR(256) NOT NULL,
+	Email VARCHAR(256) NOT NULL
 );
-
+GO
 
 SELECT * FROM Usuario;
-
 SELECT * FROM Produto;
-
