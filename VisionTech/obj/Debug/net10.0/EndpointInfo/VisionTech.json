@@ -528,9 +528,6 @@
         "additionalProperties": false
       },
       "Produto": {
-        "required": [
-          "quantidadeEstoque"
-        ],
         "type": "object",
         "properties": {
           "idProduto": {

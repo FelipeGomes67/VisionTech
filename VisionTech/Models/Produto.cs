@@ -22,7 +22,6 @@ public partial class Produto
     [Unicode(false)]
     public string? Imagem { get; set; }
 
-    [Required]
     public int QuantidadeEstoque { get; set; }
 
     [StringLength(40)]

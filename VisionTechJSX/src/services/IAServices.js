@@ -1,6 +1,6 @@
 import api from "./Services";
 
-const API_KEY = "";
+const API_KEY = "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";
 
 export const gerarResumo = async (titulo, descricao = "") => {
   try {
@@ -8,6 +8,8 @@ export const gerarResumo = async (titulo, descricao = "") => {
       "https://api.groq.com/openai/v1/chat/completions",
       {
         model: "llama-3.3-70b-versatile",
+        temperature: 0.4,
+        max_tokens: 180,
         messages: [
           {
             role: "user",

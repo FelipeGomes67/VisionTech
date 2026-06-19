@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -18,7 +18,7 @@ public partial class Usuario
     [Unicode(false)]
     public string Nome { get; set; } = null!;
 
-    [StringLength(255)]
+    [StringLength(60)]
     [Unicode(false)]
     public string Senha { get; set; } = null!;
 
